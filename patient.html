@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Patient Entry</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a href="home.html">Back to Home</a>
+    <button onclick="logout()">Logout</button>
+  </nav>
+  <div class="container">
+    <h2>Patient Data Entry</h2>
+    <form id="patientForm">
+      <label>Name: <input type="text" id="patName" required></label>
+      <label>Age: <input type="number" id="patAge" required></label>
+      <label>Room No: <input type="text" id="patRoom" required></label>
+      <label>Doctor: <input type="text" id="patDoctor" list="doctors" required></label>
+      <datalist id="doctors">
+        <option value="Dr. Smith">
+        <option value="Dr. Jones">
+        <option value="Dr. Lee">
+      </datalist>
+      <label>Speciality: <input type="text" id="patSpeciality" required></label>
+      <label>Chief Complaint: <input type="text" id="patCC"></label>
+      <label>Past Medical History:
+        <select id="patPMH" multiple>
+          <option value="Diabetes">Diabetes</option>
+          <option value="Hypertension">Hypertension</option>
+          <option value="Asthma">Asthma</option>
+        </select>
+      </label>
+      <label>Past Surgical History: <input type="text" id="patPSH" list="pshList"></label>
+      <datalist id="pshList">
+        <option value="Appendectomy">
+        <option value="Cholecystectomy">
+      </datalist>
+      <label>Diagnosis: <input type="text" id="patDx"></label>
+      <div>
+        <h4>Medications</h4>
+        <div id="patMedList"></div>
+        <button type="button" onclick="addPatMedRow()">Add Medication</button>
+      </div>
+      <label>Investigations: <textarea id="patInv"></textarea></label>
+      <label>Upload Images: <input type="file" id="patImages" multiple></label>
+      <label>Notes: <textarea id="patNotes"></textarea></label>
+      <div>
+        <input type="checkbox" id="chartVitals"> Chart Vitals
+        <input type="checkbox" id="chartNotes"> Notes
+      </div>
+      <button type="submit">Save Patient</button>
+    </form>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
