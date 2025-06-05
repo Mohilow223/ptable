@@ -1,7 +1,17 @@
 Parse.initialize("T2v9Sl7EQGurSZI6ydAMB9bJvo6rC7kI4nsVGeCC", "", "T2v9Sl7EQGurSZI6ydAMB9bJvo6rC7kI4nsVGeCC");
 Parse.serverURL = "https://parseapi.back4app.com/";
 // main.js: Stubs & UI logic only. Add Parse/Back4App logic for real data!
-
+document.getElementById('loginForm')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const username = document.getElementById('loginUsername').value;
+  const password = document.getElementById('loginPassword').value;
+  try {
+    await Parse.User.logIn(username, password);  // Checks with Back4App
+    window.location = "home.html";              // If OK, go to home
+  } catch (err) {
+    document.getElementById('loginError').textContent = "Invalid username or password!";
+  }
+});
 // --- Login Page ---
 document.getElementById('loginForm')?.addEventListener('submit', function(e) {
   e.preventDefault();
