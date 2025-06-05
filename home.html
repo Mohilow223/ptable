@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EMR Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <span>EMR System</span>
+    <a href="admin.html">Admin Dashboard</a>
+    <a href="archive.html">Archive</a>
+    <button onclick="logout()">Logout</button>
+  </nav>
+  <div class="container">
+    <h2>Patients by Ward</h2>
+    <label for="wardSelect">Select Ward:</label>
+    <select id="wardSelect" onchange="loadPatientsTable()">
+      <option value="Ward A">Ward A</option>
+      <option value="Ward B">Ward B</option>
+      <option value="Ward C">Ward C</option>
+    </select>
+    <button class="add-btn" onclick="window.location='patient.html'">Add New Patient</button>
+    <table id="patientsTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Room No</th>
+          <th>Doctor</th>
+          <th>Speciality</th>
+          <th>Dx</th>
+          <th>Notes</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Filled by JS -->
+      </tbody>
+    </table>
+  </div>
+  <!-- Medication Popup -->
+  <div id="medPopup" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeMedPopup()">&times;</span>
+      <h3>Edit Medications</h3>
+      <form id="medForm">
+        <div id="medList"></div>
+        <button type="button" onclick="addMedRow()">Add Medication</button>
+        <div>
+          <button type="button" onclick="saveMedications()">Save</button>
+          <button type="button" onclick="printMedications()">Print</button>
+          <button type="button" onclick="closeMedPopup()">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
