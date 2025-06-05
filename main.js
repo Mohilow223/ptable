@@ -1,3 +1,5 @@
+Parse.initialize("T2v9Sl7EQGurSZI6ydAMB9bJvo6rC7kI4nsVGeCC", "", "T2v9Sl7EQGurSZI6ydAMB9bJvo6rC7kI4nsVGeCC");
+Parse.serverURL = "https://parseapi.back4app.com/";
 // main.js: Stubs & UI logic only. Add Parse/Back4App logic for real data!
 
 // --- Login Page ---
