@@ -55,7 +55,25 @@ function loadPatientsTable() {
 }
 window.loadPatientsTable = loadPatientsTable;
 if (document.getElementById('patientsTable')) loadPatientsTable();
-
+async function savePatient() {
+  const Patient = Parse.Object.extend("Patient");      // "Patient" is your class name in Back4App
+  const patient = new Patient();
+  // Set fields from your form
+  patient.set("name", document.getElementById('patName').value);
+  patient.set("age", Number(document.getElementById('patAge').value));
+  // Add other fields as needed...
+  try {
+    await patient.save();      // Saves to Back4App
+    alert('Patient saved!');
+    window.location = "home.html";
+  } catch (err) {
+    alert('Error: ' + err.message);
+  }
+}
+document.getElementById('patientForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  savePatient();
+});
 // --- Medication Popup ---
 let currentMedPatientIdx = null;
 function openMedPopup(idx) {
@@ -177,3 +195,20 @@ window.restorePatient = restorePatient;
 // --- Logout ---
 function logout() { window.location = 'index.html'; }
 window.logout = logout;
+
+
+//--- wards ---
+async function loadPatientsTable() {
+  const ward = document.getElementById('wardSelect')?.value || 'Ward A';
+  const Patient = Parse.Object.extend("Patient");
+  const query = new Parse.Query(Patient);
+  query.equalTo("ward", ward);          // Find only patients in the selected ward
+  const results = await query.find();   // Get patients from Back4App
+  const tbody = document.getElementById('patientsTable').querySelector('tbody');
+  tbody.innerHTML = '';
+  results.forEach(patient => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${patient.get('name')}</td> ...`;  // Fill in other columns
+    tbody.appendChild(tr);
+  });
+}
